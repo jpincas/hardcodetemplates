@@ -1,8 +1,8 @@
-#Golang HTML Template Hardcoder
+# Simple Golang HTML Template Hardcoder
 
 This is a very simple package that turns your html template files into hardcoded Go constants that are included at compile time.  It is intended to be used by package authors with `go generate`
 
-##Why would you need this?
+## Why would you need this?
 
 If you want to hard code your HTML templates into your Go program so that it doesn't depend on any external files, then you'll need to generate Go constants with the template contents hard coded as template literals.
 
@@ -20,7 +20,7 @@ go install github/jpincas/hardcodetemplates
 
 In the diretory of the package that you are working on, create a `templates` directory and create `.html` files with your templates.  There is no need to `{{ define "templatename"}}` for each template - that will be done for you.
 
-In any of your packages `.go` files, include the `go generate` comment:
+In any of your package's `.go` files, include the `go generate` comment:
 
 ```
 //go:generate hardcodetemplates -p=packagename
@@ -63,7 +63,6 @@ As an example of how to use it:
 ```
 templates := template.Must(template.New("base").Parse(baseTemplate))
 templates.ExecuteTemplate(w, "adminhome.html", page{})
-
 ```
 
 Ignore the new template `base` that we create - you won't use it directly, but you'll have access to all your named templates as you'd expect!
