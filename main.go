@@ -73,8 +73,7 @@ package %s
 
 const baseTemplate = %s`
 
-	defineTop = `
-	{{ define "%s" }}`
-	defineBottom = `
-	{{ end }}`
+	defineTop = `{{ define "%s" }}`
+
+	defineBottom = `{{ end }}`
 )
