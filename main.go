@@ -34,7 +34,7 @@ func main() {
 	//Create a template holder with all .html files in the 'template' directory
 	//relative to where this is run
 	var templates *template.Template
-	templates, _ = templates.ParseGlob("templates/*.html")
+	templates, _ = templates.ParseGlob("templates/*")
 
 	//Variable for appending template contents
 	allTemplates := ""
