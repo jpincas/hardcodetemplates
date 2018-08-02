@@ -34,7 +34,11 @@ func main() {
 	//Create a template holder with all .html files in the 'template' directory
 	//relative to where this is run
 	var templates *template.Template
-	templates, _ = templates.ParseGlob("templates/*")
+
+	templates, err := templates.ParseGlob("./templates/*.html")
+	if err != nil {
+		panic("Unable to parse templates")
+	}
 
 	//Variable for appending template contents
 	allTemplates := ""
@@ -58,7 +62,7 @@ func main() {
 	h := fmt.Sprintf(fileContents, *packageName, allTemplates)
 
 	//Write the file
-	err := ioutil.WriteFile("templates.go", []byte(h), 0644)
+	err = ioutil.WriteFile("templates.go", []byte(h), 0644)
 	if err != nil {
 		log.Fatalf("writing output: %s", err)
 	}
