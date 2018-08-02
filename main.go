@@ -25,6 +25,7 @@ import (
 //packageName is the name of the package from which this is being called.
 //Usage with flag: go:generate hardcodetemplates -p=admin
 var packageName = flag.String("p", "", "Package name - must be set")
+var templateDir = flag.String("d", "./templates", "Template directory -d defualts to ./templates")
 
 func main() {
 
@@ -35,9 +36,9 @@ func main() {
 	//relative to where this is run
 	var templates *template.Template
 
-	templates, err := templates.ParseGlob("./templates/*.html")
+	templates, err := templates.ParseGlob(*templateDir + "/*.html")
 	if err != nil {
-		panic("Unable to parse templates")
+		panic(fmt.Sprintf("Unable to parse templates in directory %s. Error: %s", *templateDir, err.Error()))
 	}
 
 	//Variable for appending template contents
